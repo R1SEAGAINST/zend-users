@@ -45,12 +45,27 @@ class NavManager
                 'label' => 'Sign in',
                 'link'  => $url('login'),
                 'float' => 'right',
+                'dropdown' => [
+                    [
+                        'id' => 'login',
+                        'label' => 'Sign in',
+                        'link'  => $url('login'),
+
+                     ],
+                    [
+                        'id' => 'register',
+                        'label' => 'Register',
+                        'link'  => $url('users', ['action'=>'add']),
+
+                    ]
+                ]
+
             ];
         } else {
             
             $items[] = [
-                'id' => 'admin',
-                'label' => 'Admin',
+                'id' => 'Users',
+                'label' => 'Users',
                 'dropdown' => [
                     [
                         'id' => 'users',

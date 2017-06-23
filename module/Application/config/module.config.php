@@ -37,19 +37,6 @@ return [
                     ],
                 ],
             ],
-            'registration' => [
-                'type'    => Segment::class,
-                'options' => [
-                    'route'    => '/registration[/:action]',
-                    'constraints' => [
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
-                    ],
-                    'defaults' => [
-                        'controller'    => Controller\RegistrationController::class,
-                        'action'        => 'index',
-                    ],
-                ],
-            ],
             'about' => [
                 'type' => Literal::class,
                 'options' => [
@@ -65,7 +52,6 @@ return [
     'controllers' => [
         'factories' => [
             Controller\IndexController::class => Controller\Factory\IndexControllerFactory::class,
-            Controller\RegistrationController::class => Controller\Factory\RegistrationControllerFactory::class,
         ],
     ],
     'access_filter' => [

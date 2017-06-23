@@ -18,6 +18,19 @@ return [
                     ],
                 ],
             ],
+            'register' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/register',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                    ],
+                    'defaults' => [
+                        'controller'    => Controller\RegisterController::class,
+                        'action'        => 'index',
+                    ],
+                ],
+            ],
             'logout' => [
                 'type' => Literal::class,
                 'options' => [
@@ -67,12 +80,20 @@ return [
     'controllers' => [
         'factories' => [
             Controller\AuthController::class => Controller\Factory\AuthControllerFactory::class,
-            Controller\UserController::class => Controller\Factory\UserControllerFactory::class,            
+            Controller\UserController::class => Controller\Factory\UserControllerFactory::class,
+            Controller\RegisterController::class => Controller\Factory\RegisterControllerFactory::class,
         ],
     ],
     'access_filter' => [
         'controllers' => [
             Controller\UserController::class => [
+
+
+                ['actions' => ['resetPassword', 'message',  'add', 'setPassword'], 'allow' => '*'],
+
+                ['actions' => ['index', 'edit', 'view', 'changePassword'], 'allow' => '@']
+            ],
+            Controller\RegisterController::class => [
 
 
                 ['actions' => ['resetPassword', 'message', 'setPassword'], 'allow' => '*'],
@@ -87,6 +108,7 @@ return [
             Service\AuthAdapter::class => Service\Factory\AuthAdapterFactory::class,
             Service\AuthManager::class => Service\Factory\AuthManagerFactory::class,
             Service\UserManager::class => Service\Factory\UserManagerFactory::class,
+            Service\RegisterManager::class => Service\Factory\RegisterManagerFactory::class,
         ],
     ],
     'view_manager' => [
